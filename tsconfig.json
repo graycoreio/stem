@@ -85,6 +85,9 @@
       "@daffodil/design/list/examples": [
         "dist/design/list/examples"
       ],
+      "@daffodil/design/message-bar/examples": [
+        "dist/design/message-bar/examples"
+      ],
       "@daffodil/branding": [
         "dist/branding"
       ],
