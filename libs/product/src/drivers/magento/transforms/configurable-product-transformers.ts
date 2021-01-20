@@ -1,4 +1,4 @@
-import { DaffProductTypeEnum, DaffProductDiscount } from '../../../models/product';
+import { DaffProductTypeEnum } from '../../../models/product';
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
 import { 
 	MagentoConfigurableProduct, 
@@ -14,7 +14,8 @@ import {
 	DaffConfigurableProductVariant,
 	DaffProductVariantAttributesDictionary
 } from '../../../models/configurable-product';
-import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento-product';
+import { MagentoProductStockStatusEnum } from '../models/magento-product';
+import { getDiscount, getDiscountedPrice, getPrice } from '../helpers/null-checkers';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct. 
@@ -49,8 +50,11 @@ export function transformVariant(variant: MagentoConfigurableProductVariant): Da
 	return {
 		id: variant.product.sku,
 		appliedAttributes: transformVariantAttributes(variant.attributes),
-		price: getPrice(variant.product),
-		discount: getDiscount(variant.product),
+		price: {
+			originalPrice: getPrice(variant.product),
+			discount: getDiscount(variant.product),
+			discountedPrice: getDiscountedPrice(variant.product)
+		},
 		image: {
 			id: '0',
 			url: variant.product.image.url,
@@ -70,25 +74,4 @@ export function transformVariantAttributes(attributes: MagentoConfigurableAttrib
 	});
 
 	return appliedAttributes;
-}
-
-/**
- * A function for null checking an object.
- */
-function getPrice(product: MagentoProduct): number {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.regular_price && 
-		product.price_range.maximum_price.regular_price.value !== null
-	? product.price_range.maximum_price.regular_price.value : null;
-}
-
-function getDiscount(product: MagentoProduct): DaffProductDiscount {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.discount 
-		? { 
-			amount: product.price_range.maximum_price.discount.amount_off,
-			percent: product.price_range.maximum_price.discount.percent_off
-		} : { amount: null, percent: null }
 }

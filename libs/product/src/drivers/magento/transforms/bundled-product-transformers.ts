@@ -1,5 +1,5 @@
 import { MagentoBundledProduct, MagentoBundledProductItem, MagentoBundledProductItemOption } from '../models/bundled-product';
-import { DaffProductDiscount, DaffProductTypeEnum } from '../../../models/product';
+import { DaffProductTypeEnum } from '../../../models/product';
 import { DaffCompositeProduct } from '../../../models/composite-product';
 import { 
 	DaffCompositeProductItemOption, 
@@ -7,7 +7,8 @@ import {
 	DaffCompositeProductItemInputEnum 
 } from '../../../models/composite-product-item';
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
-import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento-product';
+import { MagentoProductStockStatusEnum } from '../models/magento-product';
+import { getDiscount, getDiscountedPrice, getPrice } from '../helpers/null-checkers';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct. 
@@ -16,10 +17,13 @@ import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento
 export function transformMagentoBundledProduct(product: MagentoBundledProduct, mediaUrl: string): DaffCompositeProduct {
 	return {
 		...transformMagentoSimpleProduct(product, mediaUrl),
-		price: 0,
-		discount: {
-			amount: 0,
-			percent: 0
+		price: {
+			originalPrice: 0,
+			discount: {
+				percent: 0,
+				amount: 0
+			},
+			discountedPrice: 0
 		},
 		type: DaffProductTypeEnum.Composite,
 		items: product.items.map(transformMagentoBundledProductItem)
@@ -40,34 +44,15 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 	return {
 		id: option.id.toString(),
 		name: option.label,
-		price: getPrice(option.product),
 		images: [],
-		discount: getDiscount(option.product),
+		price: {
+			originalPrice: getPrice(option.product),
+			discount: getDiscount(option.product),
+			discountedPrice: getDiscountedPrice(option.product)
+		},
 		quantity: option.quantity,
 		is_default: option.is_default,
 		in_stock: option.product.stock_status === MagentoProductStockStatusEnum.InStock
 	}
 }
 
-/**
- * A function for null checking an object.
- */
-//TODO: use optional chaining after angular 9 and Typescript 3.7
-function getPrice(product: MagentoProduct): number {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.regular_price && 
-		product.price_range.maximum_price.regular_price.value !== null
-	? product.price_range.maximum_price.regular_price.value : null;
-}
-
-//TODO: use optional chaining after angular 9 and Typescript 3.7
-function getDiscount(product: MagentoProduct): DaffProductDiscount {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.discount 
-		? { 
-			amount: product.price_range.maximum_price.discount.amount_off,
-			percent: product.price_range.maximum_price.discount.percent_off
-		} : { amount: null, percent: null }
-}
