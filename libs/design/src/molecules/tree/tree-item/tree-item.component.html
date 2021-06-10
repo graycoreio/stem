@@ -1,0 +1,12 @@
+<div class="daff-tree-item__header" (click)="toggleOpen()">
+  <ng-content select="[daffTreeItemTitle]"></ng-content>
+  <span [hidden]="_open" daffSuffix *ngIf="hasChildren">
+    <fa-icon [icon]="faChevronDown"></fa-icon>
+  </span>
+  <span [hidden]="!_open" daffSuffix *ngIf="hasChildren">
+    <fa-icon [icon]="faChevronUp"></fa-icon>
+  </span>
+</div>
+<div class="daff-tree-item__content" [@openTree]="_animationState">
+  <ng-content></ng-content>
+</div>

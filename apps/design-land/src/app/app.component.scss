@@ -1,17 +1,9 @@
 .design-land {
   &__sidebar {
-    padding: 25px;
+    padding: 24px 0;
   }
 
   &__content {
-    padding: 25px;
-  }
-}
-
-daff-link-set {
-  margin: 0 0 25px 0;
-
-  &:last-child {
-    margin: 0;
+    padding: 24px;
   }
 }

@@ -34,8 +34,9 @@ export const appRoutes: Routes = [
   { path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.SidebarModule) },
   { path: 'checkbox', loadChildren: () => import('./checkbox/checkbox.module').then(m => m.CheckboxModule) },
   { path: 'radio', loadChildren: () => import('./radio/radio.module').then(m => m.RadioModule) },
-  { path: 'typography', loadChildren: () => import('./typography/typography.module').then(m => m.DesignLandTypographyModule) }
-]
+  { path: 'tree', loadChildren: () => import('./tree/tree.module').then(m => m.DesignLandTreeModule) },
+  { path: 'typography', loadChildren: () => import('./typography/typography.module').then(m => m.DesignLandTypographyModule) },
+];
 
 @NgModule({
   imports: [

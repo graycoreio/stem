@@ -1,0 +1,66 @@
+@import 'daff-util';
+
+:host(.daff-tree-item) {
+	$root: '.daff-tree-item';
+	display: block;
+	text-decoration: none;
+
+	&#{$root}--level-1 {
+		#{$root}__header {
+			padding-left: 32px;
+		}
+	}
+
+	&#{$root}--level-2 {
+		#{$root}__header {
+			padding-left: 48px;
+		}
+	}
+
+	&#{$root}--level-3 {
+		#{$root}__header {
+			padding-left: 64px;
+		}
+	}
+
+	&#{$root}--level-1,
+	&#{$root}--level-2,
+	&#{$root}--level-3 {
+		#{$root}__header {
+			font-weight: 400;
+		}
+	}
+
+	&#{$root}--active {
+		#{$root}__header {
+			@include embolden();
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				width: 4px;
+			}
+		}
+	}
+}
+
+.daff-tree-item {
+	&__header {
+		@include clickable();
+		@include embolden();
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: relative;
+		padding: 8px 16px;
+		width: 100%;
+		transition: background-color 150ms;
+
+		.daff-suffix {
+			margin-left: 8px;
+		}
+	}
+}
