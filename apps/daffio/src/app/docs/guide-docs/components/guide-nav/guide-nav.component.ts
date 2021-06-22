@@ -3,6 +3,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+import { RouterLinkActive } from '@angular/router';
 
 import { DaffioGuideList } from '../../../shared/models/guide-list';
 
@@ -17,4 +18,8 @@ export class DaffioGuideNavComponent {
    * The guide list to render
    */
   @Input() guideList: DaffioGuideList;
+
+  activeRouterLinkConfiguration: RouterLinkActive['routerLinkActiveOptions'] = {
+    exact: true,
+  };
 }

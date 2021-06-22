@@ -8,8 +8,8 @@ import {
   ContentChildren,
   QueryList,
   ChangeDetectionStrategy,
-	ChangeDetectorRef,
-	AfterContentChecked,
+  ChangeDetectorRef,
+  AfterContentChecked,
 } from '@angular/core';
 import {
   faChevronUp,
@@ -37,17 +37,17 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	/**
 	 * @docs-private
 	 */
-  faChevronDown = faChevronDown;
+	faChevronDown = faChevronDown;
 
-  /**
-   * @docs-private
-   */
+	/**
+	 * @docs-private
+	 */
 	@HostBinding('class') get classes() {
-    return [
-      'daff-tree-item',
-      'daff-tree-item--level-' + this._level,
-    ];
-  }
+	  return [
+	    'daff-tree-item',
+	    'daff-tree-item--level-' + this._level,
+	  ];
+	}
 
 	/**
 	 * @docs-private
@@ -60,7 +60,7 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 		private tree: DaffTreeComponent,
 		private cd: ChangeDetectorRef,
 		@SkipSelf() @Optional() private treeItemParent: DaffTreeItemComponent,
-	) {}
+	) { }
 
 	@Input() initiallyOpen = false;
 	@Input() active = false;
@@ -79,7 +79,7 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	 * @docs-private
 	 */
 	openTree() {
-		if(!this.hasChildren) {
+	  if (!this.hasChildren) {
 	    return;
 	  }
 
@@ -93,24 +93,22 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	_interacted = false;
 
 	ngAfterContentChecked() {
-		const activeChildren = this._directChildren.filter((item) => {
-			return item.active;
-		})
-		
-		if(activeChildren.length > 0 && this._interacted === false ) {
-			this.openTree();
-			this.cd.markForCheck();
-		}
+	  const activeChildren = this._treeItemChild.filter((item) => item.active);
+	  if (activeChildren.length > 0 && this._interacted === false) {
+	    this.openTree();
+	    this.cd.markForCheck();
+	  }
 	}
 
 	/**
 	 * @docs-private
 	 */
 	_open = false;
+	
 	/**
 	 * @docs-private
 	 */
-  _animationState: string;
+	_animationState: string;
 
 	/**
 	 * @docs-private
@@ -121,20 +119,19 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	 * @docs-private
 	 */
 	ngOnInit() {
-	  if(this.treeItemParent && this.tree === this.treeItemParent.tree) {
+	  if (this.treeItemParent && this.tree === this.treeItemParent.tree) {
 	    this._level = this.treeItemParent._level + 1;
 	  }
 	  this._open = this.initiallyOpen ? this.initiallyOpen : this._open;
-	  this._animationState = getAnimationState(this._open);
 	}
 
 	toggleOpen() {
-	  if(!this.hasChildren) {
+	  if (!this.hasChildren) {
 	    return;
 	  }
 
 	  this._open = !this._open;
-		this._interacted = true;
+	  this._interacted = true;
 	  this._animationState = getAnimationState(this._open);
 	}
 }

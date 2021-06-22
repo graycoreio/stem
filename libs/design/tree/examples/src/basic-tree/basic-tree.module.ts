@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffTreeModule } from '@daffodil/design';
+import { DaffTreeModule } from '@daffodil/design/tree';
 
 import { BasicTreeComponent } from './basic-tree.component';
 

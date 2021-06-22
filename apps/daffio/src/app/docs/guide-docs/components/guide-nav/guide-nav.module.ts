@@ -5,10 +5,10 @@ import { RouterModule } from '@angular/router';
 import {
   DaffListModule,
   DaffLinkSetModule,
-  DaffAccordionModule,
 } from '@daffodil/design';
 
 import { DaffioGuideNavComponent } from './guide-nav.component';
+import { DaffTreeModule } from '@daffodil/design/tree';
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import { DaffioGuideNavComponent } from './guide-nav.component';
     DaffLinkSetModule,
     DaffListModule,
     RouterModule,
-    DaffAccordionModule,
+    DaffTreeModule,
   ],
 })
 export class DaffioGuideNavModule { }

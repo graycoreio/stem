@@ -6,7 +6,7 @@ describe('treeAnimationState Calculation', () => {
     expect(getAnimationState(true)).toEqual('open');
   });
 
-  it('should return `void` if it is not show', () => {
-    expect(getAnimationState(false)).toEqual('void');
+  it('should return `closed` if it is not show', () => {
+    expect(getAnimationState(false)).toEqual('closed');
   });
 });

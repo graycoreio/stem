@@ -7,9 +7,9 @@ import {
 import { createCustomElement } from '@angular/elements';
 
 import {
-  DaffTreeModule,
   DaffArticleModule,
 } from '@daffodil/design';
+import { DaffTreeModule } from '@daffodil/design/tree';
 import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
 
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';

@@ -34,15 +34,6 @@
 	&#{$root}--active {
 		#{$root}__header {
 			@include embolden();
-
-			&::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				width: 4px;
-			}
 		}
 	}
 }
@@ -58,6 +49,15 @@
 		padding: 8px 16px;
 		width: 100%;
 		transition: background-color 150ms;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 4px;
+		}
 
 		.daff-suffix {
 			margin-left: 8px;

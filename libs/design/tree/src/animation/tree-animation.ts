@@ -16,14 +16,14 @@ export const daffTreeAnimations: {
       opacity: '1',
       height: '*',
     })),
-    state('void',style({
+    state('closed,*', style({
       visibility: 'hidden',
       overflow: 'hidden',
       opacity: '0',
       height: '0',
     })),
-    transition('void <=> open',
+    transition('open <=> closed',
       animate('150ms ease-in'),
-    ),
+    )
   ]),
 };

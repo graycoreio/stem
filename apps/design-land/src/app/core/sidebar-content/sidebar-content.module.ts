@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffTreeModule } from '@daffodil/design';
+import { DaffTreeModule } from '@daffodil/design/tree';
 
 import { SidebarContentComponent } from './sidebar-content.component';
 import { RouterModule } from '@angular/router';

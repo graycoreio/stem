@@ -16,7 +16,7 @@ export interface DesignLandDocument {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarContentComponent {
-	docs: DesignLandDocument = {
+  docs: DesignLandDocument = {
     title: 'root',
     items: [
       {
@@ -113,8 +113,8 @@ export class SidebarContentComponent {
             items: [],
           },
           {
-            title: 'Image',
-            url: 'image',
+            title: 'Image Gallery',
+            url: 'image-gallery',
             items: [],
           },
           {

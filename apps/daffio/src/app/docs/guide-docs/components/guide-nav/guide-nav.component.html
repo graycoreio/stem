@@ -1,13 +1,57 @@
-<daff-accordion *ngIf="guideList">
-	<daff-nav-accordion-item>
-		<div daffAccordionItemTitle *ngIf="guideList.children.length">{{ guideList.path }}</div>
-		<daff-nav-accordion-item *ngFor="let guide of guideList.children">
-			<a daffAccordionItemTitle *ngIf="!guide.children.length" routerLink="/{{ guide.path }}">{{ guide.title }}</a>
-			<div daffAccordionItemTitle *ngIf="guide.children.length">{{ guide.title }}</div>
-			<daff-nav-accordion-item *ngFor="let childGuide of guide.children">
-				<a daffAccordionItemTitle *ngIf="!childGuide.children.length" routerLink="/{{ childGuide.path }}">{{ childGuide.title }}</a>
-				<div daffAccordionItemTitle *ngIf="childGuide.children.length">{{ childGuide.title }}</div>
-			</daff-nav-accordion-item>
-		</daff-nav-accordion-item>
-	</daff-nav-accordion-item>
-</daff-accordion>
+<daff-tree *ngIf="guideList">
+	<ng-container *ngFor="let guide of guideList.children">
+		<ng-container *ngIf="guide.children.length  === 0">
+			<a daff-tree-item [active]="rla.isActive" [routerLink]="guide.path" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="activeRouterLinkConfiguration">
+				<span daffTreeItemTitle>{{ guide.title }}</span>
+			</a>
+		</ng-container>
+		<ng-container *ngIf="guide.children.length > 0">
+			<daff-tree-item>
+				<div daffTreeItemTitle>{{ guide.title }}</div>
+				<ng-container *ngFor="let guide of guide.children">
+					<ng-container *ngIf="guide.children.length  === 0">
+						<a daff-tree-item [active]="rla.isActive" [routerLink]="guide.path" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="activeRouterLinkConfiguration">
+							<span daffTreeItemTitle>{{ guide.title }}</span>
+						</a>
+					</ng-container>
+					<ng-container *ngIf="guide.children.length > 0">
+						<daff-tree-item>
+							<div daffTreeItemTitle>{{ guide.title }}</div>
+							<ng-container *ngFor="let guide of guide.children">
+								<ng-container *ngIf="guide.children.length  === 0">
+									<a daff-tree-item [active]="rla.isActive" [routerLink]="guide.path" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="activeRouterLinkConfiguration">
+										<span daffTreeItemTitle>{{ guide.title }}</span>
+									</a>
+								</ng-container>
+								<ng-container *ngIf="guide.children.length > 0">
+									<daff-tree-item>
+										<div daffTreeItemTitle>{{ guide.title }}</div>
+										<ng-container *ngFor="let guide of guide.children">
+											<ng-container *ngIf="guide.children.length  === 0">
+												<a daff-tree-item [active]="rla.isActive" [routerLink]="guide.path" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="activeRouterLinkConfiguration">
+													<span daffTreeItemTitle>{{ guide.title }}</span>
+												</a>
+											</ng-container>
+											<ng-container *ngIf="guide.children.length > 0">
+												<daff-tree-item>
+													<div daffTreeItemTitle>{{ guide.title }}</div>
+													<ng-container *ngFor="let guide of guide.children">
+														<ng-container *ngIf="guide.children.length  === 0">
+															<a daff-tree-item [active]="rla.isActive" [routerLink]="guide.path" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="activeRouterLinkConfiguration">
+																<span daffTreeItemTitle>{{ guide.title }}</span>
+															</a>
+														</ng-container>
+													</ng-container>
+												</daff-tree-item>
+											</ng-container>
+										</ng-container>
+									</daff-tree-item>
+								</ng-container>
+							</ng-container>
+						</daff-tree-item>
+					</ng-container>
+				</ng-container>
+			</daff-tree-item>
+		</ng-container>
+	</ng-container>
+</daff-tree>
