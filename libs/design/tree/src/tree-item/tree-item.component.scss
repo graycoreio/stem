@@ -36,6 +36,12 @@
 			@include embolden();
 		}
 	}
+
+	::ng-deep {
+		#{$root}__title {
+			@include single-line-ellipsis();
+		}
+	}
 }
 
 .daff-tree-item {
