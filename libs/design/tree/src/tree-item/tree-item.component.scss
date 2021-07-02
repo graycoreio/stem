@@ -47,12 +47,12 @@
 .daff-tree-item {
 	&__header {
 		@include clickable();
-		@include embolden();
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		font-weight: 600;
 		position: relative;
-		padding: 8px 16px;
+		padding: 12px 16px;
 		width: 100%;
 		transition: background-color 150ms;
 
