@@ -17,14 +17,14 @@ import { DaffTreeItemComponent } from './tree-item.component';
 
 @Component({ template: `
 <daff-tree>
-	<daff-tree-item [initiallyActive]="initiallyActiveValue">
+	<daff-tree-item [initiallyOpen]="initiallyOpenValue">
 		<h3 daffTreeItemTitle>Size and Fit</h3>
 		<div daffTreeItemContent>no content</div>
 	</daff-tree-item>
 </daff-tree>
 ` })
 class UsageWrapperComponent {
-  initiallyActiveValue: boolean;
+  initiallyOpenValue: boolean;
 }
 
 describe('DaffTreeItemComponent', () => {
@@ -72,26 +72,26 @@ describe('DaffTreeItemComponent', () => {
       expect(daffTreeItem._animationState).toEqual('void');
     });
 
-    it('should be able to accept an initiallyActive input', () => {
-      wrapper.initiallyActiveValue = false;
+    it('should be able to accept an initiallyOpen input', () => {
+      wrapper.initiallyOpenValue = false;
 
       fixture.detectChanges();
 
-      expect(daffTreeItem.initiallyActive).toEqual(false);
+      expect(daffTreeItem.initiallyOpen).toEqual(false);
 
-      wrapper.initiallyActiveValue = true;
+      wrapper.initiallyOpenValue = true;
 
       fixture.detectChanges();
 
-      expect(daffTreeItem.initiallyActive).toEqual(true);
+      expect(daffTreeItem.initiallyOpen).toEqual(true);
     });
 
     describe('ngOnInit', () => {
 
-      describe('when initiallyActive is true', () => {
+      describe('when initiallyOpen is true', () => {
 
         beforeEach(() => {
-          wrapper.initiallyActiveValue = true;
+          wrapper.initiallyOpenValue = true;
           fixture.detectChanges();
         });
 
@@ -101,10 +101,10 @@ describe('DaffTreeItemComponent', () => {
         });
       });
 
-      describe('when initiallyActive is not set', () => {
+      describe('when initiallyOpen is not set', () => {
 
         beforeEach(() => {
-          wrapper.initiallyActiveValue = undefined;
+          wrapper.initiallyOpenValue = undefined;
           fixture.detectChanges();
         });
 
@@ -118,32 +118,32 @@ describe('DaffTreeItemComponent', () => {
     describe('when tree header is clicked', () => {
 
       beforeEach(() => {
-        spyOn(daffTreeItem, 'toggleActive');
+        spyOn(daffTreeItem, 'toggleOpen');
 
         treeHeader.nativeElement.click();
       });
 
-      it('should call toggleActive', () => {
-        expect(daffTreeItem.toggleActive).toHaveBeenCalledWith();
+      it('should call toggleOpen', () => {
+        expect(daffTreeItem.toggleOpen).toHaveBeenCalledWith();
       });
     });
 
-    describe('toggleActive', () => {
+    describe('toggleOpen', () => {
       it('should toggle open', () => {
         daffTreeItem._open = false;
 
-        daffTreeItem.toggleActive();
+        daffTreeItem.toggleOpen();
         expect(daffTreeItem._open).toEqual(true);
 
-        daffTreeItem.toggleActive();
+        daffTreeItem.toggleOpen();
         expect(daffTreeItem._open).toEqual(false);
       });
 
       it('should toggle _animationState between void and open', () =>  {
-        daffTreeItem.toggleActive();
+        daffTreeItem.toggleOpen();
         expect(daffTreeItem._animationState).toEqual('open');
 
-        daffTreeItem.toggleActive();
+        daffTreeItem.toggleOpen();
         expect(daffTreeItem._animationState).toEqual('void');
       });
     });
@@ -153,7 +153,7 @@ describe('DaffTreeItemComponent', () => {
 	<daff-tree>
 		<daff-tree-item>
 			<daff-tree>
-				<daff-tree-item [initiallyActive]="initiallyActiveValue">
+				<daff-tree-item [initiallyOpen]="initiallyOpenValue">
 					<h3 daffTreeItemTitle>Size and Fit</h3>
 					<div daffTreeItemContent>no content</div>
 				</daff-tree-item>
@@ -162,7 +162,7 @@ describe('DaffTreeItemComponent', () => {
 	</daff-tree>
 	` })
   class FirstChildWrapperComponent {
-		initiallyActiveValue: boolean;
+		initiallyOpenValue: boolean;
 	}
 
 	describe('when it is the first child tree-item', () => {
@@ -199,16 +199,16 @@ describe('DaffTreeItemComponent', () => {
 
 	@Component({ template: `
 		<daff-tree>
-			<daff-tree-item [initiallyActive]="initiallyActiveValue">
+			<daff-tree-item [initiallyOpen]="initiallyOpenValue">
 				<h3 daffTreeItemTitle>Size and Fit</h3>
-				<daff-tree-item [initiallyActive]="initiallyActiveValue">
+				<daff-tree-item [initiallyOpen]="initiallyOpenValue">
 					<h3 daffTreeItemTitle>Size and Fit</h3>
 				</daff-tree-item>
 			</daff-tree-item>
 		</daff-tree>
 	` })
 	class NotFirstChildWrapperComponent {
-		initiallyActiveValue: boolean;
+		initiallyOpenValue: boolean;
 	}
 
 	describe('when it is not the first child tree-item', () => {
@@ -245,16 +245,16 @@ describe('DaffTreeItemComponent', () => {
 
 	@Component({ template: `
 		<daff-tree>
-			<daff-tree-item [initiallyActive]="initiallyActiveValue">
+			<daff-tree-item [initiallyOpen]="initiallyOpenValue">
 				<h3 daffTreeItemTitle>Size and Fit</h3>
-				<daff-tree-item [initiallyActive]="initiallyActiveValue">
+				<daff-tree-item [initiallyOpen]="initiallyOpenValue">
 					<h3 daffTreeItemTitle>Size and Fit</h3>
 				</daff-tree-item>
 			</daff-tree-item>
 		</daff-tree>
 	` })
 	class HasChildWrapperComponent {
-		initiallyActiveValue: boolean;
+		initiallyOpenValue: boolean;
 	}
 
 	describe('when it has a child tree-item', () => {
@@ -290,13 +290,13 @@ describe('DaffTreeItemComponent', () => {
 
 	@Component({ template: `
 		<daff-tree>
-			<daff-tree-item [initiallyActive]="initiallyActiveValue">
+			<daff-tree-item [initiallyOpen]="initiallyOpenValue">
 				<h3 daffTreeItemTitle>Size and Fit</h3>
 			</daff-tree-item>
 		</daff-tree>
 	` })
 	class HasNoChildWrapperComponent {
-		initiallyActiveValue: boolean;
+		initiallyOpenValue: boolean;
 	}
 
 	describe('when it does not have a child tree-item', () => {

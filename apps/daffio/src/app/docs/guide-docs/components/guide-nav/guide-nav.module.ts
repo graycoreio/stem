@@ -6,10 +6,9 @@ import {
   DaffListModule,
   DaffLinkSetModule,
 } from '@daffodil/design';
-
-import { DaffioGuideNavComponent } from './guide-nav.component';
 import { DaffTreeModule } from '@daffodil/design/tree';
 
+import { DaffioGuideNavComponent } from './guide-nav.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +19,9 @@ import { DaffTreeModule } from '@daffodil/design/tree';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     DaffLinkSetModule,
     DaffListModule,
-    RouterModule,
     DaffTreeModule,
   ],
 })

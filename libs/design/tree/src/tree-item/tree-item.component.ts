@@ -104,7 +104,7 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	 * @docs-private
 	 */
 	_open = false;
-	
+
 	/**
 	 * @docs-private
 	 */

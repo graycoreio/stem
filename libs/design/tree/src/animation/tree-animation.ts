@@ -24,6 +24,6 @@ export const daffTreeAnimations: {
     })),
     transition('open <=> closed',
       animate('150ms ease-in'),
-    )
+    ),
   ]),
 };

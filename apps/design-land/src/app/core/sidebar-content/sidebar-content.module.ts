@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { DaffTreeModule } from '@daffodil/design/tree';
 
 import { SidebarContentComponent } from './sidebar-content.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [SidebarContentComponent],
+  declarations: [
+    SidebarContentComponent,
+  ],
   imports: [
     CommonModule,
-		RouterModule,
-		DaffTreeModule,
+    RouterModule,
+    DaffTreeModule,
   ],
   exports: [
     SidebarContentComponent,
