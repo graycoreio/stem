@@ -31,7 +31,7 @@
 		}
 	}
 
-	&#{$root}--active {
+	&#{$root}--selected {
 		#{$root}__header {
 			@include embolden();
 		}

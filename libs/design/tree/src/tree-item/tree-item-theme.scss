@@ -17,8 +17,8 @@
 			}
 		}
 
-		&--active {
-			#{$root}__header {
+		&--selected {
+			> #{$root}__header {
 				background: daff-illuminate($base, $daff-gray, 2);
 				color: $base-contrast;
 

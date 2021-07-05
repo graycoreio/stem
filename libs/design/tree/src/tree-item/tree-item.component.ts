@@ -52,8 +52,8 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	/**
 	 * @docs-private
 	 */
-	@HostBinding('class.daff-tree-item--active') get activeClass() {
-	  return this.active;
+	@HostBinding('class.daff-tree-item--selected') get selectedClass() {
+	  return this.selected;
 	}
 
 	constructor(
@@ -62,8 +62,18 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 		@SkipSelf() @Optional() private treeItemParent: DaffTreeItemComponent,
 	) { }
 
+	/**
+	 * Can be used to open the tree item upon initial render, but lets subsequent
+	 * "open" states be controlled by the component without external
+	 * state management.
+	 */
 	@Input() initiallyOpen = false;
-	@Input() active = false;
+
+	/**
+	 * When a tree item is selected, this means that either this element,
+	 * or some child element (recursively), is selected.
+	 */
+	@Input() selected = false;
 
 	@ContentChildren(DaffTreeItemComponent, { descendants: true })
 	_treeItemChild: QueryList<DaffTreeItemComponent>;
@@ -78,7 +88,7 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	/**
 	 * @docs-private
 	 */
-	openTree() {
+	 openTree() {
 	  if (!this.hasChildren) {
 	    return;
 	  }
@@ -93,8 +103,8 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	_interacted = false;
 
 	ngAfterContentChecked() {
-	  const activeChildren = this._treeItemChild.filter((item) => item.active);
-	  if (activeChildren.length > 0 && this._interacted === false) {
+	  const selectedChildren = this._treeItemChild.filter((item) => item.selected);
+	  if (selectedChildren.length > 0 && this._interacted === false) {
 	    this.openTree();
 	    this.cd.markForCheck();
 	  }
