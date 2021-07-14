@@ -76,6 +76,10 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	@Input() selected = false;
 
 	@ContentChildren(DaffTreeItemComponent, { descendants: true })
+
+	/**
+	 * @docs-private
+	 */
 	_treeItemChild: QueryList<DaffTreeItemComponent>;
 
 	@ContentChildren(DaffTreeItemComponent)
