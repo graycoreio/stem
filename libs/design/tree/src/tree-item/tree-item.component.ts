@@ -79,6 +79,10 @@ export class DaffTreeItemComponent implements OnInit, AfterContentChecked {
 	_treeItemChild: QueryList<DaffTreeItemComponent>;
 
 	@ContentChildren(DaffTreeItemComponent)
+
+	/**
+	 * @docs-private
+	 */
 	_directChildren: QueryList<DaffTreeItemComponent>;
 
 	get hasChildren(): boolean {

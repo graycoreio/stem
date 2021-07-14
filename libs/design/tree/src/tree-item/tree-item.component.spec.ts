@@ -101,7 +101,7 @@ describe('DaffTreeItemComponent', () => {
         });
       });
 
-      describe('when initiallyOpen is not set', () => {
+      describe('when initiallyOpen is set to undefineds', () => {
 
         beforeEach(() => {
           wrapper.initiallyOpenValue = undefined;

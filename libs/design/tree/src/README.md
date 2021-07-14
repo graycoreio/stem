@@ -1,21 +1,50 @@
-# Accordion Component
-
-The accordion component is a useful component when you're trying to display chunks of content in a compact fashion.
-
-The accordion consists of a global `<daff-accordion>` parent with children `<daff-accordion-item>`s.
-
+# Tree
+`DaffTreeComponent` is used to display hierarchial data.
+s
 ## Usage
-
 ```
-<daff-accordion>
-    <daff-accordion-item initiallyActive="true">
-        <h3 daffAccordionItemTitle>Details</h3>
-        <div daffAccordionItemContent>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo 
-            lacus ut sapien consectetur, et ultricies leo rutrum. Integer iaculis ultrices nunc, 
-            et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus sagittis libero sagittis eget.
-            <a>Learn More.</a>
-        </div>
-    </daff-accordion-item>
-</daff-accordion>
+<daff-tree>
+  <daff-tree-item>
+	  <div daffTreeItemTitle>Design</div>
+	  <daff-tree-item>
+        <div daffTreeItemTitle>Foundations</div>
+        <a daff-tree-item [active]="rla.isActive" routerLink="/tree" routerLinkActive #rla="routerLinkActive">
+          <span daffTreeItemTitle>Color</span>
+        </a>
+        <a daff-tree-item routerLink="/tree">
+          <span daffTreeItemTitle>Typography</span>
+        </a>
+      </daff-tree-item>
+      <daff-tree-item>
+			<div daffTreeItemTitle>Components</div>
+			<daff-tree-item>
+				<span daffTreeItemTitle>Atoms</span>
+				<a daff-tree-item>
+					<span daffTreeItemTitle>Button</span>
+				</a>
+				<a daff-tree-item>
+					<span daffTreeItemTitle>Checkbox</span>
+				</a>
+			</daff-tree-item>
+		</daff-tree-item>
+	</daff-tree-item>
+	<daff-tree-item>
+		<div daffTreeItemTitle>Packages</div>
+		<daff-tree-item>
+			<div daffTreeItemTitle>@daffodil/authorizenet</div>
+			<daff-tree-item>
+				<span daffTreeItemTitle>Overview</span>
+			</daff-tree-item>
+			<a daff-tree-item>
+				<span daffTreeItemTitle>Installation</span>
+			</a>
+		</daff-tree-item>
+		<a daff-tree-item>
+			<span daffTreeItemTitle>@daffodil/cart</span>
+		</a>
+		<a daff-tree-item>
+			<span daffTreeItemTitle>@daffodil/category</span>
+		</a>
+	</daff-tree-item>
+</daff-tree>
 ```
