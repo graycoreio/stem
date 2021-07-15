@@ -28,6 +28,18 @@ export const magentoProductFragment = gql`
 		description {
 			html
 		}
+		upsell_products {
+      ...magentoProductPreview
+      ...magentoBundledProduct
+      ...magentoSimpleProduct
+      ...magentoConfigurableProduct
+    }
+    related_products {
+      ...magentoProductPreview
+      ...magentoBundledProduct
+      ...magentoSimpleProduct
+      ...magentoConfigurableProduct
+    }
 		...magentoBundledProduct
 		...magentoSimpleProduct
 		...magentoConfigurableProduct
