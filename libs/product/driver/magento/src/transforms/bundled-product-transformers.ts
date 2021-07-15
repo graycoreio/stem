@@ -22,6 +22,7 @@ import {
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
  *
  * @param response the response from a magento product query.
+ * @deprecated import from @daffodil/composite-product/driver/magento instead.
  */
 export function transformMagentoBundledProduct(
   daffProduct: DaffProduct,
