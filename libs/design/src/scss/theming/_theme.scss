@@ -18,6 +18,7 @@
 @import '../../molecules/paginator/paginator-theme';
 @import '../../molecules/sidebar/sidebar/sidebar-theme';
 @import '../../molecules/sidebar/sidebar-viewport/sidebar-viewport-theme';
+@import '../../../tree/src/tree-item/tree-item-theme.scss';
 
 //
 // Generates the styles of a @daffodil/design theme.
@@ -49,4 +50,5 @@
 	@include daff-paginator-theme($theme);
 	@include daff-sidebar-theme($theme);
 	@include daff-sidebar-viewport-theme($theme);
+	@include daff-tree-item-theme($theme);
 }

@@ -1,0 +1,31 @@
+@mixin daff-tree-item-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+
+	.daff-tree-item {
+		$root: &;
+		&__header {
+			color: daff-illuminate($base-contrast, $daff-gray, 4);
+
+			&:hover {
+				background: daff-illuminate($base, $daff-gray, 2);
+			}
+		}
+
+		&--selected {
+			> #{$root}__header {
+				background: daff-illuminate($base, $daff-gray, 2);
+				color: $base-contrast;
+
+				&::before {
+					background-color: daff-color($primary);
+				}
+			}
+		}
+	}
+}

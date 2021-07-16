@@ -2,27 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import {
-  DaffListModule,
-  DaffLinkSetModule,
-} from '@daffodil/design';
 import { DaffTreeModule } from '@daffodil/design/tree';
 
-import { DaffioGuideNavComponent } from './guide-nav.component';
+import { SidebarContentComponent } from './sidebar-content.component';
 
 @NgModule({
   declarations: [
-    DaffioGuideNavComponent,
-  ],
-  exports: [
-    DaffioGuideNavComponent,
+    SidebarContentComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    DaffLinkSetModule,
-    DaffListModule,
     DaffTreeModule,
   ],
+  exports: [
+    SidebarContentComponent,
+  ],
 })
-export class DaffioGuideNavModule { }
+export class DesignLandSidebarContentModule { }

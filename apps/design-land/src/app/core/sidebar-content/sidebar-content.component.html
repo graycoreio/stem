@@ -1,0 +1,12 @@
+<daff-tree>
+	<daff-tree-item *ngFor="let item of docs.items">
+		<div daffTreeItemTitle>{{ item.title }}</div>
+		<ng-container *ngFor="let child of item.items">
+			<ng-container *ngIf="child.items.length === 0">
+				<a daff-tree-item [selected]="rla.isActive" [routerLink]="child.url" routerLinkActive #rla="routerLinkActive">
+					<span daffTreeItemTitle>{{ child.title }}</span>
+				</a>
+			</ng-container>
+		</ng-container>
+	</daff-tree-item>
+</daff-tree>
