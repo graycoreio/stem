@@ -1,16 +1,25 @@
 import { MagentoProduct } from './magento-product';
 import { MagentoSimpleProduct } from './simple-product';
 
+/**
+ * @deprecated import from @daffodil/composite-product/driver/magento instead.
+ */
 export enum MagentoPriceTypeEnum {
 	fixed = 'FIXED',
 	percent = 'PERCENT',
 	dynamic = 'DYNAMIC'
 }
 
+/**
+ * @deprecated import from @daffodil/composite-product/driver/magento instead.
+ */
 export interface MagentoBundledProduct extends MagentoProduct {
 	items: MagentoBundledProductItem[];
 }
 
+/**
+ * @deprecated import from @daffodil/composite-product/driver/magento instead.
+ */
 export interface MagentoBundledProductItem {
 	required: boolean;
 	sku: string;
@@ -21,6 +30,9 @@ export interface MagentoBundledProductItem {
 	position?: number;
 }
 
+/**
+ * @deprecated import from @daffodil/composite-product/driver/magento instead.
+ */
 export interface MagentoBundledProductItemOption {
 	uid: string;
 	label: string;
